@@ -1,4 +1,7 @@
-# readlex
+# Kingsley Read Lexicon
+
+![readlex](https://user-images.githubusercontent.com/59408625/153301890-778c9099-8304-48ba-b6b3-dc4ff3e6bd1c.png)
+
 The Kingsley Read Lexicon: a spelling dictionary for the Shavian alphabet following the rhotic Received Pronunciation standard.
 
 The Kingsley Read Lexicon is presented as a TSV document with five columns representing:
