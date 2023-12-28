@@ -20,9 +20,25 @@ The JSON file, readlex.json, contains words grouped by headword, with each word 
 
 The TSV file has five columns representing the above information, but does not group words by headword.
 
-## .dict files
+## readlex_converter.json and readlex_converter_phrases.json
 
-The files readlex.dict, addendum.dict (which contains mainly proper names, initialisms and ephemera), and trapbathmerger.dict (which contains the TRAP-BATH merged forms of words which are common in US English among others) are adapted for use with the transliteration scripts available at https://www.dechifro.org/shavian/.
+The files readlex_converter.json and readlex_converter_phrases.json have been developed for use with the latin2shaw.py script for auto-transliteration (see below).
+
+## readlex.dict
+
+The file readlex.dict (and addendum.dict) is adapted for use with Dave Coffin's scrips available at [Dechifro.org](https://www.dechifro.org/shavian/).
+
+## latin2shaw.py
+
+The file latin2shaw.py is the script I use for the ReadLex Converter. It uses spaCy for part of speech tagging. 
+
+To use latin2shaw.py you'll need to install the following packages with it:
+- spaCy and an English language model (I use en_core_web_sm), following the instructions [here](https://spacy.io/usage)
+- unidecode
+- smartypants
+- bs4 (BeautifulSoup)
+
+You will also need to make sure that latin2shaw.py points to the locations where you have saved readlex_converter.json and readlex_converter_phrases.json.
 
 ## Futher information
 
