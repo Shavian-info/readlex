@@ -46,6 +46,7 @@ def latin2shaw(text):
                 "mis": "𐑥𐑦𐑕",
                 "neuro": "𐑯𐑘𐑫𐑼𐑴",
                 "non": "𐑯𐑪𐑯",
+                "o'er": "𐑴𐑼",
                 "out": "𐑬𐑑",
                 "over": "𐑴𐑝𐑼",
                 "poly": "𐑐𐑪𐑤𐑦",
@@ -282,7 +283,7 @@ def latin2shaw(text):
                 text_split_shaw += token.whitespace_
 
             # Convert verbs that change pronunciation before 'to', e.g. 'have to', 'used to', 'supposed to'
-            elif token.lower_ in before_to and doc[token.i + 1].lower_ == "to":
+            elif token.lower_ in before_to and token.i < (len(doc)-1) and doc[token.i + 1].lower_ == "to":
                 # 'have' only changes pronunciation where 'have to' means 'must'
                 if token.lower_ in have_to:
                     if doc[token.i + 2].tag_ in ["VB", "VBP"]:
@@ -301,7 +302,7 @@ def latin2shaw(text):
                 text_split_shaw += number + ordinal_suffixes[number_suffix] + token.whitespace_
 
             # Loop through the words in the ReadLex and look for matches, and only apply the namer dot to the first word
-            # in a name (or not at all for initialisms marked with ⸰
+            # in a name (or not at all for initialisms marked with ⸰)
             elif token.lower_ in readlex_dict:
                 for i in readlex_dict.get(token.lower_, []):
                     # Match the part of speech for heteronyms
@@ -333,10 +334,10 @@ def latin2shaw(text):
             # Apply additional tests where there is still no match
             else:
                 found = False
-                # Try to construct a match using common prefixes and suffixex and include a warning symbol to aid proof
+                constructed_warning = "⚠️"
+                # Try to construct a match using common prefixes and suffixes and include a warning symbol to aid proof
                 # reading
                 for j in affixes:
-                    constructed_warning = "⚠️"
                     if token.lower_.startswith(j) and j in prefixes:
                         prefix = prefixes[j]
                         suffix = ""
@@ -368,6 +369,35 @@ def latin2shaw(text):
                                 else:
                                     text_split_shaw += prefix + i[
                                         "Shaw"] + suffix + constructed_warning + token.whitespace_
+                                break
+
+                # Try to construct plurals if not expressly included in the ReadLex, e.g. plurals of proper names.
+                if token.lower_.endswith("s"):
+                    target_word = token.lower_[:-1]
+                    if target_word in readlex_dict:
+                        found = True
+                        for i in readlex_dict.get(target_word):
+                            if i["Shaw"][-1] in s_follows:
+                                suffix = "𐑕"
+                            elif i["Shaw"][-1] in uhz_follows:
+                                suffix = "𐑩𐑟"
+                            else:
+                                suffix = "𐑟"
+                            if i["tag"] != "0" and i["tag"] == token.tag_:
+                                if token.ent_iob_ == "B" and token.ent_type_ in namer_dot_ents and not \
+                                        i["Shaw"].startswith("⸰"):
+                                    text_split_shaw += "·" + i[
+                                        "Shaw"] + suffix + constructed_warning + token.whitespace_
+                                else:
+                                    text_split_shaw += i["Shaw"] + suffix + constructed_warning + token.whitespace_
+                                break
+                            elif i["tag"] == "0":
+                                if token.ent_iob_ == "B" and token.ent_type_ in namer_dot_ents and not \
+                                        i["Shaw"].startswith("⸰"):
+                                    text_split_shaw += "·" + i[
+                                        "Shaw"] + suffix + constructed_warning + token.whitespace_
+                                else:
+                                    text_split_shaw += i["Shaw"] + suffix + constructed_warning + token.whitespace_
                                 break
 
                 # If there is still no match, do not convert the word
@@ -403,10 +433,10 @@ def latin2shaw(text):
                 text_shaw += convert(doc)
         # Convert dumb quotes, double hyphens, etc. to their typographic equivalents
         text_shaw = smartypants.smartypants(text_shaw)
-        # Convert curly quotes to angle quotes
-        quotation_marks = {"&#8216;": "&lsaquo;", "&#8217;": "&rsaquo;", "&#8220;": "&laquo;", "&#8221;": "&raquo;"}
-        for key, value in quotation_marks.items():
-            text_shaw = text_shaw.replace(key, value)
+        # # Convert curly quotes to angle quotes
+        # quotation_marks = {"&#8216;": "&lsaquo;", "&#8217;": "&rsaquo;", "&#8220;": "&laquo;", "&#8221;": "&raquo;"}
+        # for key, value in quotation_marks.items():
+        #     text_shaw = text_shaw.replace(key, value)
 
     else:
         text = unidecode.unidecode(text)
@@ -414,7 +444,7 @@ def latin2shaw(text):
         text = re.sub(r"](\S)", r"] \1", text)
         text_split = text.splitlines()
         for i in text_split:
-            if len(i) < 3000:
+            if len(i) < 10000:
                 doc = tokenise(i)
                 text_shaw += convert(doc) + "\n"
         # Convert dumb quotes, double hyphens, etc. to their typographic equivalents
