@@ -10,11 +10,15 @@ from spacy.tokens import Span
 from spacy.matcher import PhraseMatcher  # , Matcher
 
 from bs4 import BeautifulSoup
+from pathlib import Path
 
 
 def latin2shaw(text):
-    with open("static/readlex_converter.json", 'r', encoding="utf-8") as file:
-        json_data = file.read()
+    # path where resource files (readlex.json etc.) are kept
+    resource_path = Path(__file__).parent.parent
+
+    with resource_path.with_name('readlex_converter.json').open('r', encoding="utf-8") as f:
+        json_data = f.read()
 
     readlex_dict = json.loads(json_data)
 
@@ -103,7 +107,7 @@ def latin2shaw(text):
         match_id, start, end = matches[i]
 
     # Define the phrase to match
-    with open("static/readlex_converter_phrases.json", "r", newline="") as f:
+    with resource_path.with_name('readlex_converter_phrases.json').open('r', newline="") as f:
         reader = csv.reader(f)
         phrases = []
         for i in reader:
@@ -455,3 +459,12 @@ def latin2shaw(text):
         text_shaw = str(BeautifulSoup(text_shaw, features="html.parser"))
 
     return text_shaw
+
+def main():
+    with open("in", 'r') as in_file:
+        text_latin = in_file.read()
+
+    text_shaw = latin2shaw(text_latin)
+
+    with open("out", 'w') as out_file:
+        out_file.write(text_shaw)
