@@ -627,7 +627,7 @@ def main():
     args = Args().parse_args()
 
     if args.in_file != "":
-        with open("in", "r") as in_file:
+        with open(args.in_file, "r") as in_file:
             text_latin = in_file.read()
     else:
         text_latin = sys.stdin.read()
@@ -635,7 +635,7 @@ def main():
     text_shaw = latin2shaw(text_latin)
 
     if args.out_file != "":
-        with open("out", "w") as out_file:
+        with open(args.out_file, "w") as out_file:
             out_file.write(text_shaw)
     else:
         sys.stdout.write(text_shaw)
