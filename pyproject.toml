@@ -12,6 +12,7 @@ dependencies = [
     "smartypants>=2.0.1",
     "bs4>=0.0.2",
     "en-core-web-sm @ https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.7.1/en_core_web_sm-3.7.1-py3-none-any.whl",
+    "typed-argument-parser>=1.10.0",
 ]
 readme = "README.md"
 requires-python = ">= 3.8"

@@ -612,11 +612,30 @@ def latin2shaw(text):
     return text_shaw
 
 
+from tap import Tap
+import sys
+
+
+class Args(Tap):
+    in_file: str = ""
+    """File to read latin text from, if not given, text will be read from stdin"""
+    out_file: str = ""
+    """File to output Shaw text to, if not given, text will be written to stdout"""
+
+
 def main():
-    with open("in", "r") as in_file:
-        text_latin = in_file.read()
+    args = Args().parse_args()
+
+    if args.in_file != "":
+        with open("in", "r") as in_file:
+            text_latin = in_file.read()
+    else:
+        text_latin = sys.stdin.read()
 
     text_shaw = latin2shaw(text_latin)
 
-    with open("out", "w") as out_file:
-        out_file.write(text_shaw)
+    if args.out_file != "":
+        with open("out", "w") as out_file:
+            out_file.write(text_shaw)
+    else:
+        sys.stdout.write(text_shaw)

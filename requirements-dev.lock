@@ -36,6 +36,8 @@ cymem==2.0.8
     # via preshed
     # via spacy
     # via thinc
+docstring-parser==0.16
+    # via typed-argument-parser
 en-core-web-sm @ https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.7.1/en_core_web_sm-3.7.1-py3-none-any.whl
     # via readlex
 idna==3.7
@@ -56,6 +58,8 @@ murmurhash==1.0.10
     # via preshed
     # via spacy
     # via thinc
+mypy-extensions==1.0.0
+    # via typing-inspect
 numpy==1.26.4
     # via blis
     # via spacy
@@ -108,6 +112,8 @@ thinc==8.2.3
     # via spacy
 tqdm==4.66.4
     # via spacy
+typed-argument-parser==1.10.0
+    # via readlex
 typer==0.9.4
     # via spacy
     # via weasel
@@ -115,6 +121,9 @@ typing-extensions==4.12.0
     # via pydantic
     # via pydantic-core
     # via typer
+    # via typing-inspect
+typing-inspect==0.9.0
+    # via typed-argument-parser
 unidecode==1.3.8
     # via readlex
 urllib3==2.2.1
