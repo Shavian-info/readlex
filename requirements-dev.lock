@@ -40,6 +40,8 @@ en-core-web-sm @ https://github.com/explosion/spacy-models/releases/download/en_
     # via readlex
 idna==3.7
     # via requests
+iniconfig==2.0.0
+    # via pytest
 jinja2==3.1.4
     # via spacy
 langcodes==3.4.0
@@ -59,9 +61,12 @@ numpy==1.26.4
     # via spacy
     # via thinc
 packaging==24.0
+    # via pytest
     # via spacy
     # via thinc
     # via weasel
+pluggy==1.5.0
+    # via pytest
 preshed==3.0.9
     # via spacy
     # via thinc
@@ -72,6 +77,7 @@ pydantic==2.7.2
     # via weasel
 pydantic-core==2.18.3
     # via pydantic
+pytest==8.2.1
 requests==2.32.3
     # via spacy
     # via weasel

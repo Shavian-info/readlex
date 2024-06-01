@@ -5,7 +5,12 @@ import unidecode
 import smartypants
 
 import spacy
-from spacy.util import compile_infix_regex, compile_prefix_regex, compile_suffix_regex, filter_spans
+from spacy.util import (
+    compile_infix_regex,
+    compile_prefix_regex,
+    compile_suffix_regex,
+    filter_spans,
+)
 from spacy.tokens import Span
 from spacy.matcher import PhraseMatcher  # , Matcher
 
@@ -17,7 +22,9 @@ def latin2shaw(text):
     # path where resource files (readlex.json etc.) are kept
     resource_path = Path(__file__).parent.parent
 
-    with resource_path.with_name('readlex_converter.json').open('r', encoding="utf-8") as f:
+    with resource_path.with_name("readlex_converter.json").open(
+        "r", encoding="utf-8"
+    ) as f:
         json_data = f.read()
 
     readlex_dict = json.loads(json_data)
@@ -25,56 +32,90 @@ def latin2shaw(text):
     # Categories of letters that determine how a following 's is pronounced
     s_follows = {"𐑐", "𐑑", "𐑒", "𐑓", "𐑔"}
     uhz_follows = {"𐑕", "𐑖", "𐑗", "𐑟", "𐑠", "𐑡"}
-    z_follows = {"𐑚", "𐑛", "𐑜", "𐑝", "𐑞", "𐑙", "𐑤", "𐑥", "𐑯", "𐑸", "𐑹", "𐑺", "𐑻", "𐑼", "𐑽"}
+    z_follows = {
+        "𐑚",
+        "𐑛",
+        "𐑜",
+        "𐑝",
+        "𐑞",
+        "𐑙",
+        "𐑤",
+        "𐑥",
+        "𐑯",
+        "𐑸",
+        "𐑹",
+        "𐑺",
+        "𐑻",
+        "𐑼",
+        "𐑽",
+    }
     consonants = set.union(s_follows, uhz_follows, z_follows)
     # vowels = {"𐑦", "𐑰", "𐑧", "𐑱", "𐑨", "𐑲", "𐑩", "𐑳", "𐑪", "𐑴", "𐑫", "𐑵", "𐑬", "𐑶", "𐑭", "𐑷", "𐑾", "𐑿"}
     # The following are never final other than in initialisms: "𐑣", "𐑢", "𐑘", "𐑮".
 
     # Contractions that need special treatment since the separate words are not as they appear in the dictionary
-    contraction_start = {"ai": "𐑱", "ca": "𐑒𐑭", "do": "𐑛𐑴", "does": "𐑛𐑳𐑟", "did": "𐑛𐑦𐑛", "sha": "𐑖𐑭", "wo": "𐑢𐑴",
-                         "y'": "𐑘"}
-    contraction_end = {"n't": "𐑯𐑑", "all": "𐑷𐑤", "'ve": "𐑝", "'ll": "𐑤", "'m": "𐑥", "'d": "𐑛", "'re": "𐑼"}
+    contraction_start = {
+        "ai": "𐑱",
+        "ca": "𐑒𐑭",
+        "do": "𐑛𐑴",
+        "does": "𐑛𐑳𐑟",
+        "did": "𐑛𐑦𐑛",
+        "sha": "𐑖𐑭",
+        "wo": "𐑢𐑴",
+        "y'": "𐑘",
+    }
+    contraction_end = {
+        "n't": "𐑯𐑑",
+        "all": "𐑷𐑤",
+        "'ve": "𐑝",
+        "'ll": "𐑤",
+        "'m": "𐑥",
+        "'d": "𐑛",
+        "'re": "𐑼",
+    }
 
     # Common prefixes and suffixes used in new coinings
-    prefixes = {"anti": "𐑨𐑯𐑑𐑦",
-                "counter": "𐑒𐑬𐑯𐑑𐑼",
-                "de": "𐑛𐑰",
-                "dis": "𐑛𐑦𐑕",
-                "esque": "𐑧𐑕𐑒",
-                "hyper": "𐑣𐑲𐑐𐑼",
-                "hypo": "𐑣𐑲𐑐𐑴",
-                "mega": "𐑥𐑧𐑜𐑩",
-                "meta": "𐑥𐑧𐑑𐑩",
-                "micro": "𐑥𐑲𐑒𐑮𐑴",
-                "multi": "𐑥𐑳𐑤𐑑𐑦",
-                "mis": "𐑥𐑦𐑕",
-                "neuro": "𐑯𐑘𐑫𐑼𐑴",
-                "non": "𐑯𐑪𐑯",
-                "o'er": "𐑴𐑼",
-                "out": "𐑬𐑑",
-                "over": "𐑴𐑝𐑼",
-                "poly": "𐑐𐑪𐑤𐑦",
-                "post": "𐑐𐑴𐑕𐑑",
-                "pre": "𐑐𐑮𐑰",
-                "pro": "𐑐𐑮𐑴",
-                "pseudo": "𐑕𐑿𐑛𐑴",
-                "re": "𐑮𐑰",
-                "sub": "𐑕𐑳𐑚",
-                "super": "𐑕𐑵𐑐𐑼",
-                "ultra": "𐑳𐑤𐑑𐑮𐑩",
-                "un": "𐑳𐑯",
-                "under": "𐑳𐑯𐑛𐑼"
-                }
-    suffixes = {"able": "𐑩𐑚𐑩𐑤",
-                "bound": "𐑚𐑬𐑯𐑛",
-                "ful": "𐑓𐑩𐑤",
-                "hood": "𐑣𐑫𐑛",
-                "ish": "𐑦𐑖",
-                "ism": "𐑦𐑟𐑩𐑥",
-                "less": "𐑤𐑩𐑕",
-                "like": "𐑤𐑲𐑒",
-                "ness": "𐑯𐑩𐑕"
-                }
+    prefixes = {
+        "anti": "𐑨𐑯𐑑𐑦",
+        "counter": "𐑒𐑬𐑯𐑑𐑼",
+        "de": "𐑛𐑰",
+        "dis": "𐑛𐑦𐑕",
+        "esque": "𐑧𐑕𐑒",
+        "hyper": "𐑣𐑲𐑐𐑼",
+        "hypo": "𐑣𐑲𐑐𐑴",
+        "mega": "𐑥𐑧𐑜𐑩",
+        "meta": "𐑥𐑧𐑑𐑩",
+        "micro": "𐑥𐑲𐑒𐑮𐑴",
+        "multi": "𐑥𐑳𐑤𐑑𐑦",
+        "mis": "𐑥𐑦𐑕",
+        "neuro": "𐑯𐑘𐑫𐑼𐑴",
+        "non": "𐑯𐑪𐑯",
+        "o'er": "𐑴𐑼",
+        "out": "𐑬𐑑",
+        "over": "𐑴𐑝𐑼",
+        "poly": "𐑐𐑪𐑤𐑦",
+        "post": "𐑐𐑴𐑕𐑑",
+        "pre": "𐑐𐑮𐑰",
+        "pro": "𐑐𐑮𐑴",
+        "pseudo": "𐑕𐑿𐑛𐑴",
+        "re": "𐑮𐑰",
+        "sub": "𐑕𐑳𐑚",
+        "super": "𐑕𐑵𐑐𐑼",
+        "ultra": "𐑳𐑤𐑑𐑮𐑩",
+        "un": "𐑳𐑯",
+        "under": "𐑳𐑯𐑛𐑼",
+    }
+    suffixes = {
+        "able": "𐑩𐑚𐑩𐑤",
+        "bound": "𐑚𐑬𐑯𐑛",
+        "ful": "𐑓𐑩𐑤",
+        "hood": "𐑣𐑫𐑛",
+        "ish": "𐑦𐑖",
+        "ism": "𐑦𐑟𐑩𐑥",
+        "less": "𐑤𐑩𐑕",
+        "like": "𐑤𐑲𐑒",
+        "ness": "𐑯𐑩𐑕",
+    }
     affixes = prefixes | suffixes
 
     # Words that sometimes change spelling before 'to'
@@ -91,15 +132,21 @@ def latin2shaw(text):
     # Customise the spaCy tokeniser to ensure that initial and final dashes and dashes between words aren't stuck to one
     # of the surrounding words
     # Prefixes
-    spacy_prefixes = nlp.Defaults.prefixes + [r"""^[-–—]+""", ]
+    spacy_prefixes = nlp.Defaults.prefixes + [
+        r"""^[-–—]+""",
+    ]
     prefix_regex = compile_prefix_regex(spacy_prefixes)
     nlp.tokenizer.prefix_search = prefix_regex.search
     # Infixes
-    spacy_infixes = nlp.Defaults.infixes + [r"""[-–—\"\~\(\[]+""", ]
+    spacy_infixes = nlp.Defaults.infixes + [
+        r"""[-–—\"\~\(\[]+""",
+    ]
     infix_regex = compile_infix_regex(spacy_infixes)
     nlp.tokenizer.infix_finditer = infix_regex.finditer
     # Suffixes
-    spacy_suffixes = nlp.Defaults.suffixes + [r"""[-–—]+$""", ]
+    spacy_suffixes = nlp.Defaults.suffixes + [
+        r"""[-–—]+$""",
+    ]
     suffix_regex = compile_suffix_regex(spacy_suffixes)
     nlp.tokenizer.suffix_search = suffix_regex.search
 
@@ -107,7 +154,9 @@ def latin2shaw(text):
         match_id, start, end = matches[i]
 
     # Define the phrase to match
-    with resource_path.with_name('readlex_converter_phrases.json').open('r', newline="") as f:
+    with resource_path.with_name("readlex_converter_phrases.json").open(
+        "r", newline=""
+    ) as f:
         reader = csv.reader(f)
         phrases = []
         for i in reader:
@@ -134,7 +183,17 @@ def latin2shaw(text):
     # matcher = Matcher(nlp.vocab)
     # matcher.add("html_elements", html_patterns, on_match=add_span)
 
-    namer_dot_ents = ["PERSON", "FAC", "ORG", "GPE", "LOC", "PRODUCT", "EVENT", "WORK_OF_ART", "LAW"]
+    namer_dot_ents = [
+        "PERSON",
+        "FAC",
+        "ORG",
+        "GPE",
+        "LOC",
+        "PRODUCT",
+        "EVENT",
+        "WORK_OF_ART",
+        "LAW",
+    ]
 
     def tokenise(str):
         # Tokenise and tag the text using spaCy as doc
@@ -231,7 +290,7 @@ def latin2shaw(text):
             "st.",
             "st",
             "viscount",
-            "viscountess"
+            "viscountess",
         ]
         new_ents = []
         for ent in doc.ents:
@@ -259,17 +318,25 @@ def latin2shaw(text):
         # Apply a series of tests to each token to determine how to Shavianise it.
         text_split_shaw = ""
         for token in doc:
-
             # Leave HTML tags unchanged
             if token.tag_ == "HTML":
                 text_split_shaw += token.text
 
             # Convert contractions
-            elif token.lower_ in contraction_start and doc[token.i + 1].lower_ in contraction_end:
+            elif (
+                token.lower_ in contraction_start
+                and doc[token.i + 1].lower_ in contraction_end
+            ):
                 text_split_shaw += contraction_start[token.lower_]
             elif token.lower_ in contraction_end:
-                if token.lower_ != "𐑼" and len(text_split_shaw) > 0 and text_split_shaw[-1] in consonants:
-                    text_split_shaw += "𐑩" + contraction_end[token.lower_] + token.whitespace_
+                if (
+                    token.lower_ != "𐑼"
+                    and len(text_split_shaw) > 0
+                    and text_split_shaw[-1] in consonants
+                ):
+                    text_split_shaw += (
+                        "𐑩" + contraction_end[token.lower_] + token.whitespace_
+                    )
                 else:
                     text_split_shaw += contraction_end[token.lower_] + token.whitespace_
 
@@ -287,7 +354,11 @@ def latin2shaw(text):
                 text_split_shaw += token.whitespace_
 
             # Convert verbs that change pronunciation before 'to', e.g. 'have to', 'used to', 'supposed to'
-            elif token.lower_ in before_to and token.i < (len(doc)-1) and doc[token.i + 1].lower_ == "to":
+            elif (
+                token.lower_ in before_to
+                and token.i < (len(doc) - 1)
+                and doc[token.i + 1].lower_ == "to"
+            ):
                 # 'have' only changes pronunciation where 'have to' means 'must'
                 if token.lower_ in have_to:
                     if doc[token.i + 2].tag_ in ["VB", "VBP"]:
@@ -299,11 +370,17 @@ def latin2shaw(text):
                     text_split_shaw += vbd_to[token.lower_] + token.whitespace_
 
             # Match ordinal numbers represented by a numeral and a suffix
-            elif re.fullmatch(r"([0-9]+(?:[, .]?[0-9]+)*)(st|nd|rd|th|s)", token.lower_):
-                match = re.match(r"([0-9]+(?:[, .]?[0-9]+)*)(st|nd|rd|th|s)", token.lower_)
+            elif re.fullmatch(
+                r"([0-9]+(?:[, .]?[0-9]+)*)(st|nd|rd|th|s)", token.lower_
+            ):
+                match = re.match(
+                    r"([0-9]+(?:[, .]?[0-9]+)*)(st|nd|rd|th|s)", token.lower_
+                )
                 number = match.group(1)
                 number_suffix = match.group(2)
-                text_split_shaw += number + ordinal_suffixes[number_suffix] + token.whitespace_
+                text_split_shaw += (
+                    number + ordinal_suffixes[number_suffix] + token.whitespace_
+                )
 
             # Loop through the words in the ReadLex and look for matches, and only apply the namer dot to the first word
             # in a name (or not at all for initialisms marked with ⸰)
@@ -311,25 +388,38 @@ def latin2shaw(text):
                 for i in readlex_dict.get(token.lower_, []):
                     # Match the part of speech for heteronyms
                     if i["tag"] == token.tag_:
-                        if token.ent_iob_ == "B" and token.ent_type_ in namer_dot_ents and not i["Shaw"].startswith(
-                                "⸰"):
+                        if (
+                            token.ent_iob_ == "B"
+                            and token.ent_type_ in namer_dot_ents
+                            and not i["Shaw"].startswith("⸰")
+                        ):
                             text_split_shaw += "·" + i["Shaw"] + token.whitespace_
                         else:
                             text_split_shaw += i["Shaw"] + token.whitespace_
                         break
                     # For any proper nouns not in the ReadLex, match if an identical common noun exists
-                    elif i["tag"] in ["NN", "0"] and token.tag_ == "NNP" or i["tag"] in ["NNS",
-                                                                                         "0"] and token.tag_ == "NNPS":
-                        if token.ent_iob_ == "B" and token.ent_type_ in namer_dot_ents and not i["Shaw"].startswith(
-                                "⸰"):
+                    elif (
+                        i["tag"] in ["NN", "0"]
+                        and token.tag_ == "NNP"
+                        or i["tag"] in ["NNS", "0"]
+                        and token.tag_ == "NNPS"
+                    ):
+                        if (
+                            token.ent_iob_ == "B"
+                            and token.ent_type_ in namer_dot_ents
+                            and not i["Shaw"].startswith("⸰")
+                        ):
                             text_split_shaw += "·" + i["Shaw"] + token.whitespace_
                         else:
                             text_split_shaw += i["Shaw"] + token.whitespace_
                         break
                     # Match words with only one pronunciation
                     elif i["tag"] == "0":
-                        if token.ent_iob_ == "B" and token.ent_type_ in namer_dot_ents and not i["Shaw"].startswith(
-                                "⸰"):
+                        if (
+                            token.ent_iob_ == "B"
+                            and token.ent_type_ in namer_dot_ents
+                            and not i["Shaw"].startswith("⸰")
+                        ):
                             text_split_shaw += "·" + i["Shaw"] + token.whitespace_
                         else:
                             text_split_shaw += i["Shaw"] + token.whitespace_
@@ -345,7 +435,7 @@ def latin2shaw(text):
                     if token.lower_.startswith(j) and j in prefixes:
                         prefix = prefixes[j]
                         suffix = ""
-                        target_word = token.lower_[len(j):]
+                        target_word = token.lower_[len(j) :]
                     elif token.lower_.endswith(j) and j in suffixes:
                         prefix = ""
                         suffix = suffixes[j]
@@ -357,22 +447,50 @@ def latin2shaw(text):
                         found = True
                         for i in readlex_dict.get(target_word):
                             if i["tag"] != "0" and i["tag"] == token.tag_:
-                                if token.ent_iob_ == "B" and token.ent_type_ in namer_dot_ents and not \
-                                        i["Shaw"].startswith("⸰"):
-                                    text_split_shaw += "·" + prefix + i[
-                                        "Shaw"] + suffix + constructed_warning + token.whitespace_
+                                if (
+                                    token.ent_iob_ == "B"
+                                    and token.ent_type_ in namer_dot_ents
+                                    and not i["Shaw"].startswith("⸰")
+                                ):
+                                    text_split_shaw += (
+                                        "·"
+                                        + prefix
+                                        + i["Shaw"]
+                                        + suffix
+                                        + constructed_warning
+                                        + token.whitespace_
+                                    )
                                 else:
-                                    text_split_shaw += prefix + i[
-                                        "Shaw"] + suffix + constructed_warning + token.whitespace_
+                                    text_split_shaw += (
+                                        prefix
+                                        + i["Shaw"]
+                                        + suffix
+                                        + constructed_warning
+                                        + token.whitespace_
+                                    )
                                 break
                             elif i["tag"] == "0":
-                                if token.ent_iob_ == "B" and token.ent_type_ in namer_dot_ents and not \
-                                        i["Shaw"].startswith("⸰"):
-                                    text_split_shaw += "·" + prefix + i[
-                                        "Shaw"] + suffix + constructed_warning + token.whitespace_
+                                if (
+                                    token.ent_iob_ == "B"
+                                    and token.ent_type_ in namer_dot_ents
+                                    and not i["Shaw"].startswith("⸰")
+                                ):
+                                    text_split_shaw += (
+                                        "·"
+                                        + prefix
+                                        + i["Shaw"]
+                                        + suffix
+                                        + constructed_warning
+                                        + token.whitespace_
+                                    )
                                 else:
-                                    text_split_shaw += prefix + i[
-                                        "Shaw"] + suffix + constructed_warning + token.whitespace_
+                                    text_split_shaw += (
+                                        prefix
+                                        + i["Shaw"]
+                                        + suffix
+                                        + constructed_warning
+                                        + token.whitespace_
+                                    )
                                 break
 
                 # Try to construct plurals if not expressly included in the ReadLex, e.g. plurals of proper names.
@@ -388,20 +506,46 @@ def latin2shaw(text):
                             else:
                                 suffix = "𐑟"
                             if i["tag"] != "0" and i["tag"] == token.tag_:
-                                if token.ent_iob_ == "B" and token.ent_type_ in namer_dot_ents and not \
-                                        i["Shaw"].startswith("⸰"):
-                                    text_split_shaw += "·" + i[
-                                        "Shaw"] + suffix + constructed_warning + token.whitespace_
+                                if (
+                                    token.ent_iob_ == "B"
+                                    and token.ent_type_ in namer_dot_ents
+                                    and not i["Shaw"].startswith("⸰")
+                                ):
+                                    text_split_shaw += (
+                                        "·"
+                                        + i["Shaw"]
+                                        + suffix
+                                        + constructed_warning
+                                        + token.whitespace_
+                                    )
                                 else:
-                                    text_split_shaw += i["Shaw"] + suffix + constructed_warning + token.whitespace_
+                                    text_split_shaw += (
+                                        i["Shaw"]
+                                        + suffix
+                                        + constructed_warning
+                                        + token.whitespace_
+                                    )
                                 break
                             elif i["tag"] == "0":
-                                if token.ent_iob_ == "B" and token.ent_type_ in namer_dot_ents and not \
-                                        i["Shaw"].startswith("⸰"):
-                                    text_split_shaw += "·" + i[
-                                        "Shaw"] + suffix + constructed_warning + token.whitespace_
+                                if (
+                                    token.ent_iob_ == "B"
+                                    and token.ent_type_ in namer_dot_ents
+                                    and not i["Shaw"].startswith("⸰")
+                                ):
+                                    text_split_shaw += (
+                                        "·"
+                                        + i["Shaw"]
+                                        + suffix
+                                        + constructed_warning
+                                        + token.whitespace_
+                                    )
                                 else:
-                                    text_split_shaw += i["Shaw"] + suffix + constructed_warning + token.whitespace_
+                                    text_split_shaw += (
+                                        i["Shaw"]
+                                        + suffix
+                                        + constructed_warning
+                                        + token.whitespace_
+                                    )
                                 break
 
                 # If there is still no match, do not convert the word
@@ -420,7 +564,9 @@ def latin2shaw(text):
     if text.strip().casefold().startswith("<!doctype html"):
         style_pattern = r"(<style\b[^>]*>.*?</style>)"
         script_pattern = r"(<script\b[^>]*>.*?</script>)"
-        html_pattern = r"(?!(?:<style[^>]*?>.*?</style>|<script[^>]*?>.*?</script>))(<.*?>)"
+        html_pattern = (
+            r"(?!(?:<style[^>]*?>.*?</style>|<script[^>]*?>.*?</script>))(<.*?>)"
+        )
         html_patterns = f"{style_pattern}|{script_pattern}|{html_pattern}"
         text_split = re.split(html_patterns, text, flags=re.DOTALL)
         for text_part in text_split:
@@ -453,18 +599,24 @@ def latin2shaw(text):
                 text_shaw += convert(doc) + "\n"
         # Convert dumb quotes, double hyphens, etc. to their typographic equivalents
         text_shaw = smartypants.smartypants(text_shaw)
-        quotation_marks = {"&#8216;": "&lsaquo;", "&#8217;": "&rsaquo;", "&#8220;": "&laquo;", "&#8221;": "&raquo;"}
+        quotation_marks = {
+            "&#8216;": "&lsaquo;",
+            "&#8217;": "&rsaquo;",
+            "&#8220;": "&laquo;",
+            "&#8221;": "&raquo;",
+        }
         for key, value in quotation_marks.items():
             text_shaw = text_shaw.replace(key, value)
         text_shaw = str(BeautifulSoup(text_shaw, features="html.parser"))
 
     return text_shaw
 
+
 def main():
-    with open("in", 'r') as in_file:
+    with open("in", "r") as in_file:
         text_latin = in_file.read()
 
     text_shaw = latin2shaw(text_latin)
 
-    with open("out", 'w') as out_file:
+    with open("out", "w") as out_file:
         out_file.write(text_shaw)
