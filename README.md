@@ -28,17 +28,33 @@ The files readlex_converter.json and readlex_converter_phrases.json have been de
 
 The file readlex.dict (and addendum.dict) is adapted for use with Dave Coffin's scrips available at [Dechifro.org](https://www.dechifro.org/shavian/).
 
-## latin2shaw.py
+## src/readlex/latin2shaw.py
 
-The file latin2shaw.py is the script I use for the ReadLex Converter. It uses spaCy for part of speech tagging. 
+The file latin2shaw.py contains the code I use for the ReadLex Converter. It uses spaCy for part of speech tagging. 
 
-To use latin2shaw.py you'll need to install the following packages with it:
-- spaCy and an English language model (I use en_core_web_sm), following the instructions [here](https://spacy.io/usage)
-- unidecode
-- smartypants
-- bs4 (BeautifulSoup)
+To use it as a command line tool:
 
-You will also need to make sure that latin2shaw.py points to the locations where you have saved readlex_converter.json and readlex_converter_phrases.json.
+```bash
+pip install readlex
+
+# the script can read from stdin and print to stdout
+echo "hello world" | latin2shaw 
+
+# or use files
+latin2shaw --in_file in.txt --out_file out.txt
+```
+
+Once installed, it can also be used from python:
+
+```python
+from readlex import latin2shaw
+
+print(latin2shaw("hello world"))
+```
+
+### For contributors
+
+Once you have cloned the repo and [installed rye](https://rye.astral.sh/), you can install/sync dependencies with `rye sync` and run the script with `rye run latin2shaw`
 
 ## Futher information
 
