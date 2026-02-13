@@ -1,2 +1,7 @@
-
+target
+.venv
+.env
+__pycache__
+.idea
+dist
 .DS_Store
