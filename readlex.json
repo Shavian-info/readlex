@@ -57308,7 +57308,7 @@
             "Latn": "ballgame",
             "Shaw": "𐑚𐑷𐑤𐑜𐑱𐑥",
             "pos": "NN1",
-            "ipa": "ˈbɔːlgeɪm",
+            "ipa": "ˈbɔːlɡeɪm",
             "freq": 4,
             "var": "RRP"
         },
@@ -57316,7 +57316,7 @@
             "Latn": "ballgames",
             "Shaw": "𐑚𐑷𐑤𐑜𐑱𐑥𐑟",
             "pos": "NN2",
-            "ipa": "ˈbɔːlgeɪmz",
+            "ipa": "ˈbɔːlɡeɪmz",
             "freq": 0,
             "var": "RRP"
         }
@@ -73632,7 +73632,7 @@
             "pos": "NN1",
             "ipa": "bɜːRˈkiːliəm",
             "freq": 0,
-            "var": "RRPvar"
+            "var": "RRPVar"
         }
     ],
     "berkhamsted_NP0_𐑚𐑻𐑒𐑩𐑥𐑕𐑑𐑧𐑛": [
@@ -78810,7 +78810,7 @@
             "Latn": "bimorphic",
             "Shaw": "𐑚𐑲𐑥𐑹𐑓𐑦𐑒",
             "pos": "AJ0",
-            "ipa": "̩ˌbaɪˈmɔːRfɪk",
+            "ipa": "ˌbaɪˈmɔːRfɪk",
             "freq": 0,
             "var": "RRP"
         }
@@ -78820,7 +78820,7 @@
             "Latn": "bimorphism",
             "Shaw": "𐑚𐑲𐑥𐑹𐑓𐑦𐑟𐑩𐑥",
             "pos": "NN1",
-            "ipa": "̩ˌbaɪˈmɔːRfɪzəm",
+            "ipa": "ˌbaɪˈmɔːRfɪzəm",
             "freq": 0,
             "var": "RRP"
         }
@@ -79904,7 +79904,7 @@
             "Latn": "birdsburg",
             "Shaw": "𐑚𐑻𐑛𐑟𐑚𐑻𐑜",
             "pos": "NP0",
-            "ipa": "ˈbɜːRdzbɜːRg",
+            "ipa": "ˈbɜːRdzbɜːRɡ",
             "freq": 1,
             "var": "RRP"
         }
@@ -107798,7 +107798,7 @@
             "Latn": "bugginess",
             "Shaw": "𐑚𐑳𐑜𐑦𐑯𐑩𐑕",
             "pos": "NN1",
-            "ipa": "ˈbʌginəs",
+            "ipa": "ˈbʌɡinəs",
             "freq": 0,
             "var": "RRP"
         }
@@ -109092,7 +109092,7 @@
             "Latn": "bumbag",
             "Shaw": "𐑚𐑳𐑥𐑚𐑨𐑜",
             "pos": "NN1",
-            "ipa": "ˈbʌmbæg",
+            "ipa": "ˈbʌmbæɡ",
             "freq": 2,
             "var": "RRP"
         },
@@ -109100,7 +109100,7 @@
             "Latn": "bumbags",
             "Shaw": "𐑚𐑳𐑥𐑚𐑨𐑜𐑟",
             "pos": "NN2",
-            "ipa": "ˈbʌmbægz",
+            "ipa": "ˈbʌmbæɡz",
             "freq": 0,
             "var": "RRP"
         }
@@ -174364,7 +174364,7 @@
             "Latn": "congrats",
             "Shaw": "𐑒𐑩𐑯𐑜𐑮𐑨𐑑𐑕",
             "pos": "ITJ",
-            "ipa": "kənˈgræts",
+            "ipa": "kənˈɡræts",
             "freq": 0,
             "var": "RRP"
         }
@@ -240226,7 +240226,7 @@
             "Latn": "digby",
             "Shaw": "𐑛𐑦𐑜𐑚𐑦",
             "pos": "NP0",
-            "ipa": "ˈdɪgbi",
+            "ipa": "ˈdɪɡbi",
             "freq": 123,
             "var": "RRP"
         }
@@ -271338,7 +271338,7 @@
             "pos": "NN1",
             "ipa": "ˈduːɡɒŋ",
             "freq": 4,
-            "var": "Gen Am"
+            "var": "GenAm"
         },
         {
             "Latn": "dugongs",
@@ -271346,7 +271346,7 @@
             "pos": "NN2",
             "ipa": "ˈduːɡɒŋz",
             "freq": 2,
-            "var": "Gen Am"
+            "var": "GenAm"
         }
     ],
     "dugout_NN1_𐑛𐑳𐑜𐑬𐑑": [
@@ -282856,7 +282856,7 @@
             "Latn": "elo",
             "Shaw": "𐑺︀𐑤𐑴",
             "pos": "NP0",
-            "ipa": "'eələʊ",
+            "ipa": "ˈeələʊ",
             "freq": 3,
             "var": "RRP"
         }
@@ -296324,7 +296324,7 @@
             "Latn": "epimorphic",
             "Shaw": "𐑧𐑐𐑦𐑥𐑹𐑓𐑦𐑒",
             "pos": "AJ0",
-            "ipa": "̩ˌepɪˈmɔːRfɪk",
+            "ipa": "ˌepɪˈmɔːRfɪk",
             "freq": 0,
             "var": "RRP"
         }
@@ -296334,7 +296334,7 @@
             "Latn": "epimorphism",
             "Shaw": "𐑧𐑐𐑦𐑥𐑹𐑓𐑦𐑟𐑩𐑥",
             "pos": "NN1",
-            "ipa": "̩ˌepɪˈmɔːRfɪzəm",
+            "ipa": "ˌepɪˈmɔːRfɪzəm",
             "freq": 0,
             "var": "RRP"
         }
@@ -364240,7 +364240,7 @@
             "Latn": "gehenna",
             "Shaw": "𐑜𐑦𐑣𐑧𐑯𐑩",
             "pos": "NP0",
-            "ipa": "gɪˈhenə",
+            "ipa": "ɡɪˈhenə",
             "freq": 1,
             "var": "RRP"
         }
@@ -375210,7 +375210,7 @@
             "Latn": "goldberg",
             "Shaw": "𐑜𐑴𐑤𐑛𐑚𐑻𐑜",
             "pos": "NP0",
-            "ipa": "ˈɡəʊldbɜːRg",
+            "ipa": "ˈɡəʊldbɜːRɡ",
             "freq": 277,
             "var": "RRP"
         }
@@ -376854,7 +376854,7 @@
             "Latn": "gorrey",
             "Shaw": "𐑜𐑪𐑮𐑦",
             "pos": "NP0",
-            "ipa": "ˈgɒri",
+            "ipa": "ˈɡɒri",
             "freq": 0,
             "var": "RRP"
         }
@@ -377312,7 +377312,7 @@
             "Latn": "goulburn",
             "Shaw": "𐑜𐑴𐑤𐑚𐑼𐑯",
             "pos": "NP0",
-            "ipa": "ˈɡəʊlbəːRn",
+            "ipa": "ˈɡəʊlbəRn",
             "freq": 0,
             "var": "RRP"
         }
@@ -377740,7 +377740,7 @@
             "Latn": "goyal",
             "Shaw": "𐑜𐑶𐑩𐑤",
             "pos": "NN1",
-            "ipa": "ˈgɔɪəl",
+            "ipa": "ˈɡɔɪəl",
             "freq": 0,
             "var": "RRP"
         },
@@ -377748,7 +377748,7 @@
             "Latn": "goyals",
             "Shaw": "𐑜𐑶𐑩𐑤𐑟",
             "pos": "NN2",
-            "ipa": "ˈgɔɪəlz",
+            "ipa": "ˈɡɔɪəlz",
             "freq": 0,
             "var": "RRP"
         }
@@ -383284,7 +383284,7 @@
             "Latn": "grimpen",
             "Shaw": "𐑜𐑮𐑦𐑥𐑐𐑩𐑯",
             "pos": "NP0",
-            "ipa": "ˈgrɪmpən",
+            "ipa": "ˈɡrɪmpən",
             "freq": 9,
             "var": "RRP"
         }
@@ -384104,7 +384104,7 @@
             "Latn": "grodno",
             "Shaw": "𐑜𐑮𐑪𐑛𐑯𐑴",
             "pos": "NP0",
-            "ipa": "ˈgrɒdnəʊ",
+            "ipa": "ˈɡrɒdnəʊ",
             "freq": 0,
             "var": "RRP"
         }
@@ -389004,7 +389004,7 @@
             "Latn": "gussie",
             "Shaw": "𐑜𐑳𐑕𐑦",
             "pos": "NP0",
-            "ipa": "ˈgʌsi",
+            "ipa": "ˈɡʌsi",
             "freq": 5,
             "var": "RRP"
         }
@@ -389014,7 +389014,7 @@
             "Latn": "gussy",
             "Shaw": "𐑜𐑳𐑕𐑦",
             "pos": "NP0",
-            "ipa": "ˈgʌsi",
+            "ipa": "ˈɡʌsi",
             "freq": 0,
             "var": "RRP"
         }
@@ -424634,7 +424634,7 @@
             "Latn": "hyperfocus",
             "Shaw": "𐑣𐑲𐑐𐑼𐑓𐑴𐑒𐑩𐑕",
             "pos": "VVI",
-            "ipa": "ˌhaɪpəRˈf𐑴kəs",
+            "ipa": "ˌhaɪpəRˈfəʊkəs",
             "freq": 0,
             "var": "RRP"
         },
@@ -424642,7 +424642,7 @@
             "Latn": "hyperfocus",
             "Shaw": "𐑣𐑲𐑐𐑼𐑓𐑴𐑒𐑩𐑕",
             "pos": "VVB",
-            "ipa": "ˌhaɪpəRˈf𐑴kəs",
+            "ipa": "ˌhaɪpəRˈfəʊkəs",
             "freq": 0,
             "var": "RRP"
         },
@@ -424650,7 +424650,7 @@
             "Latn": "hyperfocuses",
             "Shaw": "𐑣𐑲𐑐𐑼𐑓𐑴𐑒𐑩𐑕𐑩𐑟",
             "pos": "VVZ",
-            "ipa": "ˌhaɪpəRˈf𐑴kəsəz",
+            "ipa": "ˌhaɪpəRˈfəʊkəsəz",
             "freq": 0,
             "var": "RRP"
         },
@@ -424658,7 +424658,7 @@
             "Latn": "hyperfocusing",
             "Shaw": "𐑣𐑲𐑐𐑼𐑓𐑴𐑒𐑩𐑕𐑦𐑙",
             "pos": "VVG",
-            "ipa": "ˌhaɪpəRˈf𐑴kəsɪŋ",
+            "ipa": "ˌhaɪpəRˈfəʊkəsɪŋ",
             "freq": 0,
             "var": "RRP"
         },
@@ -424666,7 +424666,7 @@
             "Latn": "hyperfocused",
             "Shaw": "𐑣𐑲𐑐𐑼𐑓𐑴𐑒𐑩𐑕𐑑",
             "pos": "VVN",
-            "ipa": "ˌhaɪpəRˈf𐑴kəst",
+            "ipa": "ˌhaɪpəRˈfəʊkəst",
             "freq": 0,
             "var": "RRP"
         },
@@ -424674,7 +424674,7 @@
             "Latn": "hyperfocused",
             "Shaw": "𐑣𐑲𐑐𐑼𐑓𐑴𐑒𐑩𐑕𐑑",
             "pos": "VVD",
-            "ipa": "ˌhaɪpəRˈf𐑴kəst",
+            "ipa": "ˌhaɪpəRˈfəʊkəst",
             "freq": 0,
             "var": "RRP"
         }
@@ -427734,7 +427734,7 @@
             "Latn": "iger",
             "Shaw": "𐑲𐑜𐑼",
             "pos": "NP0",
-            "ipa": "ˈaɪgəR",
+            "ipa": "ˈaɪɡəR",
             "freq": 0,
             "var": "RRP"
         }
@@ -449894,7 +449894,7 @@
             "Latn": "instagram",
             "Shaw": "𐑦𐑯𐑕𐑑𐑩𐑜𐑮𐑨𐑥",
             "pos": "NP0",
-            "ipa": "ˈɪnstəgræm",
+            "ipa": "ˈɪnstəɡræm",
             "freq": 0,
             "var": "RRP"
         }
@@ -471880,7 +471880,7 @@
             "Latn": "juliana",
             "Shaw": "𐑡𐑵𐑤𐑦𐑭𐑯𐑩",
             "pos": "NP0",
-            "ipa": "ˌdʒuːliˈⱭː.nə",
+            "ipa": "ˌdʒuːliˈⱭːnə",
             "freq": 36,
             "var": "RRP"
         },
@@ -493140,7 +493140,7 @@
             "Latn": "leignitz",
             "Shaw": "𐑤𐑲𐑜𐑯𐑦𐑑𐑕",
             "pos": "NP0",
-            "ipa": "ˈlaɪgnɪts",
+            "ipa": "ˈlaɪɡnɪts",
             "freq": 0,
             "var": "RRP"
         }
@@ -553720,7 +553720,7 @@
             "Latn": "monomorphic",
             "Shaw": "𐑥𐑪𐑯𐑴𐑥𐑹𐑓𐑦𐑒",
             "pos": "AJ0",
-            "ipa": "̩ˌmɒnəʊˈmɔːRfɪk",
+            "ipa": "ˌmɒnəʊˈmɔːRfɪk",
             "freq": 16,
             "var": "RRP"
         }
@@ -553730,7 +553730,7 @@
             "Latn": "monomorphism",
             "Shaw": "𐑥𐑪𐑯𐑴𐑥𐑹𐑓𐑦𐑟𐑩𐑥",
             "pos": "NN1",
-            "ipa": "̩ˌmɒnəʊˈmɔːRfɪzəm",
+            "ipa": "ˌmɒnəʊˈmɔːRfɪzəm",
             "freq": 0,
             "var": "RRP"
         }
@@ -569008,7 +569008,7 @@
             "Latn": "nauvoo",
             "Shaw": "𐑯𐑷𐑝𐑵",
             "pos": "NP0",
-            "ipa": "nɔˈːvuː",
+            "ipa": "nɔːˈvuː",
             "freq": 0,
             "var": "RRP"
         }
@@ -578324,7 +578324,7 @@
             "pos": "NN1",
             "ipa": "ˌnəʊˈbeliəm",
             "freq": 0,
-            "var": "RRPvar"
+            "var": "RRPVar"
         }
     ],
     "nobility_NN1_𐑯𐑴𐑚𐑦𐑤𐑦𐑑𐑦": [
@@ -585512,7 +585512,7 @@
             "Latn": "oakshott",
             "Shaw": "𐑴𐑒𐑖𐑪𐑑",
             "pos": "NP0",
-            "ipa": "ˈəʊ𐑑ʃɒt",
+            "ipa": "ˈəʊkʃɒt",
             "freq": 0,
             "var": "RRP"
         }
@@ -589088,7 +589088,7 @@
             "pos": "NN1",
             "ipa": "ˈiːstrədʒən",
             "freq": 101,
-            "var": "RRPvar"
+            "var": "RRPVar"
         }
     ],
     "of course_AV0_𐑝 𐑒𐑹𐑕": [
@@ -621496,7 +621496,7 @@
             "pos": "NN1",
             "ipa": "ˈpæstə",
             "freq": 543,
-            "var": "SSB"
+            "var": "RRPVar"
         }
     ],
     "paste-up_NN1_𐑐𐑱𐑕𐑑-𐑳𐑐": [
@@ -656604,7 +656604,7 @@
             "Latn": "polysomnograph",
             "Shaw": "𐑐𐑪𐑤𐑦𐑕𐑪𐑥𐑯𐑩𐑜𐑮𐑨𐑓",
             "pos": "NN1",
-            "ipa": "ˌpɒliˈsɒmnəgræf",
+            "ipa": "ˌpɒliˈsɒmnəɡræf",
             "freq": 0,
             "var": "RRP"
         },
@@ -656612,7 +656612,7 @@
             "Latn": "polysomnographs",
             "Shaw": "𐑐𐑪𐑤𐑦𐑕𐑪𐑥𐑯𐑩𐑜𐑮𐑨𐑓𐑕",
             "pos": "NN2",
-            "ipa": "ˌpɒliˈsɒmnəgræfs",
+            "ipa": "ˌpɒliˈsɒmnəɡræfs",
             "freq": 0,
             "var": "RRP"
         }
@@ -719468,7 +719468,7 @@
             "Latn": "reigelheimer",
             "Shaw": "𐑮𐑲𐑜𐑩𐑤𐑣𐑲𐑥𐑼",
             "pos": "NP0",
-            "ipa": "ˈrɑɪgelhɑɪməR",
+            "ipa": "ˈrɑɪɡelhɑɪməR",
             "freq": 0,
             "var": "RRP"
         }
@@ -755716,7 +755716,7 @@
             "Latn": "sabah",
             "Shaw": "𐑕𐑭𐑚𐑭",
             "pos": "NP0",
-            "ipa": "ˈsaːbɑː",
+            "ipa": "ˈsɑːbɑː",
             "freq": 139,
             "var": "RRP"
         }
@@ -764508,7 +764508,7 @@
             "Latn": "saxburg",
             "Shaw": "𐑕𐑨𐑒𐑕𐑚𐑻𐑜",
             "pos": "NP0",
-            "ipa": "ˈsæksbɜːRg",
+            "ipa": "ˈsæksbɜːRɡ",
             "freq": 0,
             "var": "RRP"
         }
@@ -783602,7 +783602,7 @@
             "Latn": "sergei",
             "Shaw": "𐑕𐑺𐑜𐑱",
             "pos": "NP0",
-            "ipa": "ˈseəRgeɪ",
+            "ipa": "ˈseəRɡeɪ",
             "freq": 172,
             "var": "RRP"
         }
@@ -799306,7 +799306,7 @@
             "Latn": "siedenburg",
             "Shaw": "𐑕𐑰𐑛𐑩𐑯𐑚𐑻𐑜",
             "pos": "NP0",
-            "ipa": "ˈsiːdənbɜːRg",
+            "ipa": "ˈsiːdənbɜːRɡ",
             "freq": 0,
             "var": "RRP"
         }
@@ -888536,7 +888536,7 @@
             "Latn": "teabag",
             "Shaw": "𐑑𐑰𐑚𐑨𐑜",
             "pos": "NN1",
-            "ipa": "ˈtiːbæg",
+            "ipa": "ˈtiːbæɡ",
             "freq": 14,
             "var": "RRP"
         },
@@ -888544,7 +888544,7 @@
             "Latn": "teabags",
             "Shaw": "𐑑𐑰𐑚𐑨𐑜𐑟",
             "pos": "NN2",
-            "ipa": "ˈtiːbægz",
+            "ipa": "ˈtiːbæɡz",
             "freq": 42,
             "var": "RRP"
         }
@@ -906664,7 +906664,7 @@
             "pos": "NN1",
             "ipa": "taɪˈteɪniəm",
             "freq": 88,
-            "var": "RRPvar"
+            "var": "RRPVar"
         }
     ],
     "titanium_NN1_𐑝𐑩𐑯𐑱𐑛𐑾𐑥": [
@@ -912570,7 +912570,7 @@
             "Latn": "totenberg",
             "Shaw": "𐑑𐑴𐑑𐑩𐑯𐑚𐑻𐑜",
             "pos": "NP0",
-            "ipa": "ˈtəʊtənbɜːRg",
+            "ipa": "ˈtəʊtənbɜːRɡ",
             "freq": 0,
             "var": "RRP"
         }
@@ -915266,7 +915266,7 @@
             "Latn": "tradesperson",
             "Shaw": "𐑑𐑮𐑱𐑛𐑟𐑐𐑻𐑕𐑩𐑯",
             "pos": "NN1",
-            "ipa": "ˈtreɪdzpɛːRsən",
+            "ipa": "ˈtreɪdzpɜːRsən",
             "freq": 5,
             "var": "RRP"
         },
@@ -1000134,7 +1000134,7 @@
             "Latn": "yevgeny",
             "Shaw": "𐑘𐑧𐑝𐑜𐑧𐑯𐑦",
             "pos": "NP0",
-            "ipa": "yevˈɡeni",
+            "ipa": "jevˈɡeni",
             "freq": 45,
             "var": "RRP"
         }
